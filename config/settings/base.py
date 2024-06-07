@@ -8,11 +8,8 @@ STATIC_DIR = BASE_DIR.parent
 sys.path.insert(0, os.path.join(BASE_DIR, "apps"))
 
 SECRET_KEY = 'django-insecure-6n-h*rbh(#ftd8oc7^hr57#v#qyok@404e-uy=vo2&4=q&y#o+'
-
-
+AUTH_USER_MODEL = 'users.User'
 DEBUG = True
-
-
 ALLOWED_HOSTS = []
 
 
@@ -38,6 +35,7 @@ THIRD_PARTY = [
 
 LOCAL_APPS = [
     'users',
+    'posts',
 ]
 
 INSTALLED_APPS = DJANGO_APPS + THIRD_PARTY + LOCAL_APPS
@@ -67,6 +65,9 @@ TEMPLATES = [
                 'django.contrib.auth.context_processors.auth',
                 'django.contrib.messages.context_processors.messages',
             ],
+             'libraries': {  
+                    'staticfiles': 'django.templatetags.static',
+                 },
         },
     },
 ]
@@ -120,6 +121,8 @@ STATIC_URL = 'static/'
 
 DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
 
+# CONSTANT
+CONSTANCE_BACKEND = 'constance.backends.database.DatabaseBackend'
 
 # REST FRAMEWORK
 
