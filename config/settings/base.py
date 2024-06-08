@@ -1,13 +1,19 @@
-from pathlib import Path
 import os
 import sys
 
+from pathlib import Path
+from dotenv import load_dotenv
+from datetime import timedelta
+
+
+load_dotenv()
 
 BASE_DIR = Path(__file__).resolve().parent.parent.parent
 STATIC_DIR = BASE_DIR.parent
 sys.path.insert(0, os.path.join(BASE_DIR, "apps"))
 
-SECRET_KEY = 'django-insecure-6n-h*rbh(#ftd8oc7^hr57#v#qyok@404e-uy=vo2&4=q&y#o+'
+SECRET_KEY = os.environ.get('SECRET_KEY', 'django-insecure-6n-h*rbh(#ftd8oc7^hr57#v#qyok@404e-uy=vo2&4=q&y#o+')
+
 AUTH_USER_MODEL = 'users.User'
 DEBUG = True
 ALLOWED_HOSTS = []
@@ -37,6 +43,7 @@ THIRD_PARTY = [
 LOCAL_APPS = [
     'users',
     'posts',
+    'videos',
 ]
 
 INSTALLED_APPS = DJANGO_APPS + THIRD_PARTY + LOCAL_APPS
@@ -158,7 +165,7 @@ CONSTANCE_CONFIG = {
     'LANGUAGE': ('EN', 'Select language', 'language_select'),
 }
 
-# SIMPLE_JWT = {
-#     'ACCESS_TOKEN_LIFETIME': timedelta(days=14),
-#     'REFRESH_TOKEN_LIFETIME': timedelta(days=30),
-# }
+SIMPLE_JWT = {
+    'ACCESS_TOKEN_LIFETIME': timedelta(days=14),
+    'REFRESH_TOKEN_LIFETIME': timedelta(days=30),
+}
