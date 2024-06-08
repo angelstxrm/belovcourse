@@ -1,7 +1,14 @@
 from django.contrib import admin
 
-from .models import Post
+from .models import Post, PostImage
 
-admin.site.register(Post)
+
 class PostAdmin(admin.ModelAdmin):
-    list_display = '__all__'
+    pass
+
+class PostImageAdmin(admin.ModelAdmin):
+    pass
+
+
+admin.site.register(Post, PostAdmin)
+admin.site.register(PostImage, PostImageAdmin)

@@ -31,6 +31,7 @@ THIRD_PARTY = [
     'versatileimagefield',
     'constance',
     'constance.backends.database',
+    'ckeditor'
 ]
 
 LOCAL_APPS = [
@@ -118,11 +119,15 @@ USE_TZ = True
 
 STATIC_URL = 'static/'
 
+STATIC_ROOT = os.path.join(STATIC_DIR, 'static/')
+MEDIA_ROOT = os.path.join(STATIC_DIR, 'media/')
+
+STATICFILES_DIRS = (
+    os.path.join(BASE_DIR, 'static'),
+)
 
 DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
 
-# CONSTANT
-CONSTANCE_BACKEND = 'constance.backends.database.DatabaseBackend'
 
 # REST FRAMEWORK
 
@@ -138,3 +143,22 @@ REST_FRAMEWORK = {
     "PAGE_SIZE": 10,
     "DEFAULT_SCHEMA_CLASS": "rest_framework.schemas.coreapi.AutoSchema",
 }
+
+# CONTANCE
+
+CONSTANCE_ADDITIONAL_FIELDS = {
+    'language_select': ['django.forms.fields.ChoiceField', {
+        'widget': 'django.forms.Select',
+        'choices': (("EN", "English"), ("NO", "Norway"))
+    }],
+}
+
+CONSTANCE_BACKEND = 'constance.backends.database.DatabaseBackend'
+CONSTANCE_CONFIG = {
+    'LANGUAGE': ('EN', 'Select language', 'language_select'),
+}
+
+# SIMPLE_JWT = {
+#     'ACCESS_TOKEN_LIFETIME': timedelta(days=14),
+#     'REFRESH_TOKEN_LIFETIME': timedelta(days=30),
+# }

@@ -13,3 +13,4 @@ python-dotenv
 drf-writable-nested
 django-constant[database]
 psycopg2-binary
+django-ckeditor
